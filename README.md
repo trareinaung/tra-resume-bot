@@ -1,8 +1,12 @@
-# 📄 Document question answering template
+# A Super Simple Resume Bot For American Center Yangon 2024 LLM Workshop
 
-A simple Streamlit app that answers questions about an uploaded document via OpenAI's GPT-3.5.
+This repo contains a super simple Streamlit app that can answer qeustions on a resume. The app demonstrates how to use:
+* Text generation LLM
+* Text embedding LLM
+* Vector store to store embeddings
+* Streamlit to deploy a simple LLM-powered app with a simple chat interface
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://document-question-answering-template.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://resume-bot.streamlit.app/)
 
 ### How to run it on your own machine
 
