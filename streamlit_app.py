@@ -16,9 +16,19 @@ client = Groq(
     api_key=st.secrets["GROQ_API_KEY"],
 )
 
+with open('prompt.txt') as f:
+    prompt = f.readlines()
+
+with open('resume.txt') as f:
+    resume = f.readlines()
+
 # Initialize chat history and selected model
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+system_prompt = {"role": "system", "content": f"""{prompt} \n <document> \n {resume} \n </document> """}
+
+st.session_state["messages"].append(system_prompt)
 
 if "model" not in st.session_state:
     st.session_state.model = "llama-3.3-70b-versatile"
@@ -38,7 +48,7 @@ def generate_chat_responses(chat_completion) -> Generator[str, None, None]:
             yield chunk.choices[0].delta.content
 
 
-if prompt := st.chat_input("Enter your prompt here..."):
+if prompt := st.chat_input("Ask what you want to know about John's resume..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.chat_message("user", avatar='👨‍💻'):
