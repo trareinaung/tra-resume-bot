@@ -1,53 +1,35 @@
 import streamlit as st
-from openai import OpenAI
+from groq import Groq
 
-# Show title and description.
-st.title("👨‍💼📊📈📁 Resume question answering")
+st.title("👨‍💼📊📈📁 John Doe's Interactive Resume")
 st.write(
-    "Upload a resume below and ask a question about it – GPT will answer! "
-    "To use this app, you need to provide an OpenAI API key, which you can get [here](https://platform.openai.com/account/api-keys). "
+    "Welcome to John Doe's personal chat bot to answer John's previous experiences and his skillsets. Ask away what you want to know!"
 )
 
-# Ask user for their OpenAI API key via `st.text_input`.
-# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
-# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
-openai_api_key = st.text_input("OpenAI API Key", type="password")
-if not openai_api_key:
-    st.info("Please add your OpenAI API key to continue.", icon="🗝️")
-else:
+client = Groq(
+    api_key=st.secrets["GROQ_API_KEY"],
+)
 
-    # Create an OpenAI client.
-    client = OpenAI(api_key=openai_api_key)
+with open('resume.txt') as f:
+    document = f.readlines()
 
-    # Let the user upload a file via `st.file_uploader`.
-    uploaded_file = st.file_uploader(
-        "Upload a document (.txt or .md)", type=("txt", "md")
+question = st.text_area(
+        "Ask questions about my experience and skills!",
+        placeholder="How many years of working experience do you have?",
     )
 
-    # Ask the user for a question via `st.text_area`.
-    question = st.text_area(
-        "Now ask a question about the document!",
-        placeholder="Can you give me a short summary?",
-        disabled=not uploaded_file,
-    )
+messages = [
+    {
+        "role": "user",
+        "content": f"I have put in my resume between <document> and </document>. Your job is to answer the questiosn that the recruiter has on my resume in a very professional and concise manner. Be helpful and provide additional information which the recuiter might want to know but have not asked in their question. By doing so the recruiter will want to ask more about my resume. The questions are between <question> and </question>. <document>{document}</document> <question>{question}</question>",
+    }
+]
 
-    if uploaded_file and question:
+stream = client.chat.completions.create(
+    messages=messages,
+    model="llama-3.3-70b-versatile",
+    stream=True
+)
 
-        # Process the uploaded file and question.
-        document = uploaded_file.read().decode()
-        messages = [
-            {
-                "role": "user",
-                "content": f"Here's a document: {document} \n\n---\n\n {question}",
-            }
-        ]
-
-        # Generate an answer using the OpenAI API.
-        stream = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=messages,
-            stream=True,
-        )
-
-        # Stream the response to the app using `st.write_stream`.
-        st.write_stream(stream)
+# Stream the response to the app using `st.write_stream`.
+st.write_stream(stream)
