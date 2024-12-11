@@ -17,10 +17,10 @@ client = OpenAI(
     base_url="https://api.x.ai/v1",
 )
 
-with open('prompt.txt') as f:
+with open('assets/prompt.txt') as f:
     prompt = f.readlines()
 
-with open('resume.txt') as f:
+with open('assets/resume.txt') as f:
     resume = f.readlines()
 
 # Initialize chat history and selected model
