@@ -37,6 +37,8 @@ if "model" not in st.session_state:
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     avatar = '🤖' if message["role"] == "assistant" else '👨‍💻'
+    if message["role"] == "system":
+        continue
     with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
 
