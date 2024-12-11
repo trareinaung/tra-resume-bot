@@ -3,9 +3,9 @@ John Doe
 
 Software Engineer
 📍 123 Tech Street, San Francisco, CA 94107 📞 (123) 456-7890 ✉️ john.doe@email.com
-LinkedIn
-GitHub
-Portfolio
+![LinkedIn](https://www.linkedin.com/in/john-doering/)
+![GitHub](https://github.com/github-john-doe)
+
 Professional Summary
 
 Enthusiastic Software Engineer with experience in designing, developing, and optimizing scalable web and mobile applications. Proficient in full-stack development with expertise in Python, JavaScript, React, and cloud technologies. Adept at working in Agile environments to deliver high-quality, user-centric solutions.
