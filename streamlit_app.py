@@ -13,7 +13,7 @@ st.write(
 )
 
 client = OpenAI(
-    api_key=XAI_API_KEY,
+    api_key=st.secrets["XAI_API_KEY"],
     base_url="https://api.x.ai/v1",
 )
 
