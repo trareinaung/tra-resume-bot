@@ -1,7 +1,13 @@
 import streamlit as st
 from groq import Groq
+from typing import Generator
 
-st.title("👨‍💼📊📈📁 John Doe's Interactive Resume")
+
+st.set_page_config(page_icon="👨‍💼", layout="wide",
+                   page_title="John Doe's Resume Bot")
+
+
+st.subheader("👨‍💼📊📈📁 John Doe's Interactive Resume")
 st.write(
     "Welcome to John Doe's personal chat bot to answer John's previous experiences and his skillsets. Ask away what you want to know!"
 )
@@ -10,42 +16,61 @@ client = Groq(
     api_key=st.secrets["GROQ_API_KEY"],
 )
 
-if "groq_model" not in st.session_state:
-    st.session_state["groq_model"] = "llama-3.3-70b-versatile"
-
+# Initialize chat history and selected model
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display chat history
+if "model" not in st.session_state:
+    st.session_state.model = "llama-3.3-70b-versatile"
+
+
+# Display chat messages from history on app rerun
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    avatar = '🤖' if message["role"] == "assistant" else '👨‍💻'
+    with st.chat_message(message["role"], avatar=avatar):
         st.markdown(message["content"])
 
-# User input
-if prompt := st.chat_input("What is up?"):
-    # Append user message to session state
+
+def generate_chat_responses(chat_completion) -> Generator[str, None, None]:
+    """Yield chat response content from the Groq API response."""
+    for chunk in chat_completion:
+        if chunk.choices[0].delta.content:
+            yield chunk.choices[0].delta.content
+
+
+if prompt := st.chat_input("Enter your prompt here..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
+
+    with st.chat_message("user", avatar='👨‍💻'):
         st.markdown(prompt)
 
-    # Get assistant response
-    with st.chat_message("assistant"):
-        stream = client.chat.completions.create(
-            model=st.session_state["groq_model"],
+    # Fetch response from Groq API
+    try:
+        chat_completion = client.chat.completions.create(
+            model=st.session_state.model,
             messages=[
-                {"role": m["role"], "content": m["content"]}
+                {
+                    "role": m["role"],
+                    "content": m["content"]
+                }
                 for m in st.session_state.messages
             ],
-            stream=True,
+            stream=True
         )
-        
-        # Ensure correct extraction of response content
-        response_content = ""
-        for chunk in stream:
-            # Assuming chunk contains a 'text' field with the response
-            if 'text' in chunk:
-                response_content += chunk['text']
-                st.write(chunk['text'])  # Stream the response
 
-    # Append assistant's response to session state
-    st.session_state.messages.append({"role": "assistant", "content": response_content})
+        # Use the generator function with st.write_stream
+        with st.chat_message("assistant", avatar="🤖"):
+            chat_responses_generator = generate_chat_responses(chat_completion)
+            full_response = st.write_stream(chat_responses_generator)
+    except Exception as e:
+        st.error(e, icon="🚨")
+
+    # Append the full response to session_state.messages
+    if isinstance(full_response, str):
+        st.session_state.messages.append(
+            {"role": "assistant", "content": full_response})
+    else:
+        # Handle the case where full_response is not a string
+        combined_response = "\n".join(str(item) for item in full_response)
+        st.session_state.messages.append(
+            {"role": "assistant", "content": combined_response})
