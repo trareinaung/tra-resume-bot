@@ -1,5 +1,5 @@
 import streamlit as st
-from groq import Groq
+from openai import OpenAI
 from typing import Generator
 
 
@@ -12,8 +12,9 @@ st.write(
     "Welcome to John Doe's personal chat bot to answer John's previous experiences and his skillsets. Ask away what you want to know!"
 )
 
-client = Groq(
-    api_key=st.secrets["GROQ_API_KEY"],
+client = OpenAI(
+    api_key=XAI_API_KEY,
+    base_url="https://api.x.ai/v1",
 )
 
 with open('prompt.txt') as f:
@@ -31,7 +32,7 @@ system_prompt = {"role": "system", "content": f"""{prompt} \n <document> \n {res
 st.session_state["messages"].append(system_prompt)
 
 if "model" not in st.session_state:
-    st.session_state.model = "llama-3.3-70b-versatile"
+    st.session_state.model = "grok-beta"
 
 
 # Display chat messages from history on app rerun
@@ -44,7 +45,6 @@ for message in st.session_state.messages:
 
 
 def generate_chat_responses(chat_completion) -> Generator[str, None, None]:
-    """Yield chat response content from the Groq API response."""
     for chunk in chat_completion:
         if chunk.choices[0].delta.content:
             yield chunk.choices[0].delta.content
@@ -56,7 +56,6 @@ if prompt := st.chat_input("Ask what you want to know about John's resume..."):
     with st.chat_message("user", avatar='👨‍💻'):
         st.markdown(prompt)
 
-    # Fetch response from Groq API
     try:
         chat_completion = client.chat.completions.create(
             model=st.session_state.model,
