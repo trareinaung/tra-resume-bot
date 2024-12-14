@@ -1,5 +1,5 @@
 Thu Rein Aung
-Data Engineer
+Business Analyst
 📍 123 Tech Street, San Francisco, CA 94107
 ☎️ (123) 456-7890
 ✉️ john.doe@email.com
@@ -23,57 +23,25 @@ Technical Skills
 
 Professional Experience
 
-Senior Software Engineer
-NextGen Tech Solutions — San Francisco, CA
-March 2022 – Present
+DATA ANALYST – Dauntless Discovery International- Yangon
+OCTOBER 2024 – Present
+● Extract, clean, and report on breached corporate data for eDiscovery.
+● Provide clear data insights to support legal compliance and aid in fine reduction.
 
-    Architected and developed scalable microservices, improving application performance by 40%.
 
-    Designed and implemented GraphQL APIs to enhance data query efficiency and flexibility.
+PROCUREMENT / PROGRAMME ASSISTANT – World Health Organization - Yangon
+JANUARY 2023 – DECEMBER 2023
+● Analyzed and managed purchase requisition, bids, financial proposals, RFPs/RFQs for various projects.
+● Prepared adjudication and project reports while analyzing supply chain data to improve performance.
+● Collaborated with various stakeholders to ensure successful projects execution.
 
-    Migrated on-premises applications to AWS, leveraging cloud-native solutions to reduce operational costs by 25%.
-
-    Led a team of five developers to successfully deliver a cross-platform mobile application for a high-profile client.
-
-    Conducted technical interviews and mentored junior engineers to foster team growth.
-
-Key Achievements:
-
-    Reduced system downtime by implementing proactive monitoring tools and incident response workflows.
-
-    Received the "Innovator of the Year" award for introducing a predictive analytics feature that boosted customer retention.
-
-Software Engineer
-Tech Innovations Inc. — San Francisco, CA
-March 2020 – February 2022
-
-    Developed and maintained full-stack applications, enhancing system performance by 30%.
-
-    Integrated third-party APIs, including payment gateways and geolocation services, to expand application capabilities.
-
-    Led the migration of legacy systems to microservices, reducing deployment time by 40%.
-
-    Collaborated with designers and product managers to deliver user-focused solutions.
-
-Key Achievements:
-
-    Spearheaded the creation of a real-time analytics dashboard, increasing user engagement by 25%.
-
-    Named "Employee of the Quarter" for exceptional contributions to critical project launches.
-
-Junior Software Developer
-Innovate Solutions — Palo Alto, CA
-July 2018 – February 2020
-
-    Assisted in developing responsive web applications using React and Node.js.
-
-    Conducted code reviews and implemented unit testing frameworks, reducing bugs by 20%.
-
-    Optimized database queries and contributed to schema design for improved performance.
-
-Key Achievements:
-
-    Reduced system downtime by 15% through proactive monitoring and efficient issue resolution.
+BUSINESS PLANNING ASSOCIATE – Lai Yih Adidas Group - Yangon
+FEBRUARY 2018 - DECEMBER 2022
+● Streamlined procurement and business operation by analyzing monthly requisition data.
+● Integrated Adidas manuals and SOPs into multilingual factory documents.
+● Led monthly training for employees, aligning with new Adidas polices and SOPs.
+● Enhanced Adidas labelling and packaging with improved data security.
+● Ensured product compliance through daily analysis.
 
 Education
 Bachelor of Science in Computer Science
