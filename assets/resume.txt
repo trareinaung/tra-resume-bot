@@ -1,5 +1,5 @@
 Thu Rein Aung
-Software Engineer
+Data Engineer
 📍 123 Tech Street, San Francisco, CA 94107
 ☎️ (123) 456-7890
 ✉️ john.doe@email.com
@@ -7,7 +7,7 @@ LinkedIn | GitHub
 Visa Status: Full working rights in the US without Visa sponsorship
 
 Professional Summary
-Innovative and results-driven Software Engineer with 5+ years of experience in developing and delivering high-quality web and mobile applications. Adept at full-stack development, cloud computing, and DevOps practices, with a proven ability to lead cross-functional teams in Agile environments. Passionate about building scalable and efficient solutions that solve real-world problems and enhance user experiences. Recognized for excellent problem-solving skills and a commitment to continuous learning.
+Aspiring Data Professional with 5+years in Supply Chain, ProjectManagement and BusinessManagement. Proficient in SQL,Tableau, Power BI, Excel, and otherICT tools. Enthusiastic about usingthese growing skills to drive strategicdecisions and improve businessprocesses. Known for stronganalytical skills, diligence, and beinga great team player with acollaborative mindset.
 
 Technical Skills
 
