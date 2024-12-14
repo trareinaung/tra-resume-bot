@@ -4,12 +4,12 @@ from typing import Generator
 
 
 st.set_page_config(page_icon="👨‍💼", layout="wide",
-                   page_title="John Doe's Resume Bot")
+                   page_title="Thu Rein Aung's Resume Bot")
 
 
-st.subheader("👨‍💼📊📈📁 John Doe's Interactive Resume")
+st.subheader("👨‍💼📊📈📁 Thu Rein Aung's Interactive Resume")
 st.write(
-    "Welcome to John Doe's personal chat bot to answer John's previous experiences and his skillsets. Ask away what you want to know!"
+    "Welcome to Thu Rein Aung's personal chat bot to answer Thu Rein Aung's previous experiences and his skillsets. Ask away what you want to know!"
 )
 
 client = OpenAI(
@@ -50,7 +50,7 @@ def generate_chat_responses(chat_completion) -> Generator[str, None, None]:
             yield chunk.choices[0].delta.content
 
 
-if prompt := st.chat_input("Ask what you want to know about John's resume..."):
+if prompt := st.chat_input("Ask what you want to know about Thu Rein Aung's resume..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.chat_message("user", avatar='👨‍💻'):
